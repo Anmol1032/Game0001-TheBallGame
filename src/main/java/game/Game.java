@@ -56,6 +56,9 @@ public class Game extends SimpleApplication implements AnalogListener, ActionLis
     float colorTimer = 0;
     int colorInt = 0;
     ChaseCamera camera;
+    BitmapText retryText;
+    BitmapText pausedText;
+    boolean startGame = true;
     private float gameSpeed = FastMath.ZERO_TOLERANCE;
     private float jump = 0;
     private float canCreateCube = -30; // false
@@ -102,7 +105,6 @@ public class Game extends SimpleApplication implements AnalogListener, ActionLis
         BitmapFont defaultFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
 
 
-
         blockMat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         blockMat.setColor("Color", ColorRGBA.Red.mult(5));
         //blockMat.setColor("GlowColor", ColorRGBA.Cyan);
@@ -117,7 +119,6 @@ public class Game extends SimpleApplication implements AnalogListener, ActionLis
         inputManager.setCursorVisible(false);
         startGame();
         inputManager.setCursorVisible(false);
-
 
 
         pausedText = new BitmapText(defaultFont);
@@ -143,10 +144,6 @@ public class Game extends SimpleApplication implements AnalogListener, ActionLis
 
 
     }
-
-    BitmapText retryText;
-
-    BitmapText pausedText;
 
     private void startGame() {
         inputManager.setCursorVisible(false);
@@ -196,7 +193,7 @@ public class Game extends SimpleApplication implements AnalogListener, ActionLis
         camera.setInvertVerticalAxis(true);
         camera.setMaxDistance(1000);
 
-        camera.setDefaultHorizontalRotation(FastMath.PI/2);
+        camera.setDefaultHorizontalRotation(FastMath.PI / 2);
 
         //blocks.add(new Geometry("block", new Box(1, 1, 1)));
         inputManager.setCursorVisible(false);
@@ -264,7 +261,7 @@ public class Game extends SimpleApplication implements AnalogListener, ActionLis
         }
         scoreText.setText(
                 "Score:  " + String.format("00000000 00000000 00000000 %07d0 00000000\n", (int) score) +
-                "Speed: " + String.format("00000000 %08d \n", (int) gameSpeed));
+                        "Speed: " + String.format("00000000 %08d \n", (int) gameSpeed));
 
 
         inputManager.setCursorVisible(false);
@@ -351,13 +348,10 @@ public class Game extends SimpleApplication implements AnalogListener, ActionLis
         inBlock = findBlock;
 
 
-
-
         colorLogic(time);
         inputManager.setCursorVisible(false);
     }
 
-    boolean startGame = true;
     private void restartGame() {
         rootNode.detachAllChildren();
         camera.setSpatial(null);
@@ -477,7 +471,6 @@ public class Game extends SimpleApplication implements AnalogListener, ActionLis
         }
 
     }
-
 
 
     private void createCube(float tpf) {
@@ -665,7 +658,7 @@ public class Game extends SimpleApplication implements AnalogListener, ActionLis
                     gamePaused = !gamePaused;
                     camera.setEnabled(!camera.isEnabled());
                     inputManager.setCursorVisible(!inputManager.isCursorVisible());
-                    pausedText.setAlpha(gamePaused ? 1:0);
+                    pausedText.setAlpha(gamePaused ? 1 : 0);
                 }
             }
             case "retry" -> {
