@@ -34,8 +34,8 @@
 ![](ImageAndVideos/screenshotGame4.png "4")
 ***
 
-see this [video](ImageAndVideos/ScreenRecording.avi)
-![](ImageAndVideos/ScreenRecording.avi)
+see this [video](ImageAndVideos/ScreenRecording.avi "wait it may load now")\
+![vidio](ImageAndVideos/ScreenRecording.gif)
 
 ## Project set up
 This is a gradle project using JMonkey Engine and other java libraries
